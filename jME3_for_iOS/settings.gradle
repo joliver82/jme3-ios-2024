@@ -1,0 +1,21 @@
+/*
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal()
+        maven { url 'https://s01.oss.sonatype.org' }
+        gradlePluginPortal()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
+    }
+}
+// Commented because of error:  Build was configured to prefer settings repositories over project repositories but repository 'MavenRepo' was added by plugin 'moe' 
+*/
+rootProject.name = "JmeForIos"
+include ':assets'
+include ':desktop'
+include ':app'
+include ':game'
+include ':ios-moe'

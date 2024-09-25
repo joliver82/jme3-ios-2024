@@ -1,0 +1,6 @@
+framework module jme3_ios_native_lib {
+  umbrella header "jme3_ios_native_lib.h"
+
+  export *
+  module * { export * }
+}

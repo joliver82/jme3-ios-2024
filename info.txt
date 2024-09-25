@@ -1,0 +1,20 @@
+jME3_for_iOS
+- Game project including Desktop, Android and iOS
+- Set Main class in ios-moe/xcode/ios-moe/Info.plist (param MOE.Main.Class)
+- Modify ios-moe/xcode/ios-moe/main.cpp to set proper memory required by your project
+- to run it ./gradlew ios-moe:moeLaunch -Pmoe.launcher.simulators=<your simulator UUID here> 
+- Simulator UUID can be obtained from ./gradlew ios-moe:moeListSimulators
+- Can al set runtime options in AndroidStudio -> http://multi-os-engine.org/doc/multi-os-engine/3_getting_started/1_hello_world_app/hello_world_app.html#running-and-debugging-your-multi-os-engine-app
+
+jme3-ios-lib
+- Java lib, taken from jmonkeyengine repo (v3.6 branch) and patched --> not really needed as jme3-ios source has not been removed from jme3 repo and could apply the patch directly there
+
+jme3-ios-native-lib
+- iOS native code taken from jmonkeyengine sdk repo (v3.3 branch)
+- Created a xcode framework peoject and added all native code for it
+- Compile using the included script export.sh
+
+jme3.6.1.patch
+- Patch required for jme3.6.1 to work (fixes instancing and removes a dalvik warning)
+- apply to jme3.6.1 sources, build it and use those libraries instead of those from maven
+

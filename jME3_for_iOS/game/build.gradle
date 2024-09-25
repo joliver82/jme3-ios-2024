@@ -1,0 +1,22 @@
+plugins {
+    id 'java-library'
+    id "io.github.0ffz.github-packages" version "1.2.1" // Plugin for anonymous inclusion of artifacts hosted in github package registry
+}
+
+java {
+    sourceCompatibility = '11'
+    targetCompatibility = '11'
+}
+
+dependencies {
+    //implementation fileTree(include: ['*.jar'], dir: '../libs') // Includes custom jme3.6.1
+    implementation 'org.jmonkeyengine:jme3-core:' + jmonkeyengineVersion
+    implementation 'org.jmonkeyengine:jme3-effects:' + jmonkeyengineVersion
+    implementation 'org.jmonkeyengine:jme3-terrain:' + jmonkeyengineVersion
+    runtimeOnly 'org.jmonkeyengine:jme3-jogg:' + jmonkeyengineVersion
+    runtimeOnly 'org.jmonkeyengine:jme3-plugins:' + jmonkeyengineVersion
+    implementation 'org.jmonkeyengine:jme3-niftygui:' + jmonkeyengineVersion
+    runtimeOnly 'org.jmonkeyengine:jme3-testdata:' + jmonkeyengineVersion
+}
+
+

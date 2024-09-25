@@ -1,0 +1,261 @@
+diff --git a/jme3-core/src/main/java/com/jme3/system/JmeVersion.java b/jme3-core/src/main/java/com/jme3/system/JmeVersion.java
+index f15bc2dcf..6b49dedc7 100644
+--- a/jme3-core/src/main/java/com/jme3/system/JmeVersion.java
++++ b/jme3-core/src/main/java/com/jme3/system/JmeVersion.java
+@@ -31,6 +31,7 @@
+  */
+ package com.jme3.system;
+ 
++import java.io.InputStream;
+ import java.io.IOException;
+ import java.util.Properties;
+ import java.util.logging.Level;
+@@ -47,8 +48,11 @@ public class JmeVersion {
+     private static final Properties props = new Properties();
+     
+     static {
++        InputStream versionIS = null;
+         try {
+-            props.load(JmeVersion.class.getResourceAsStream("version.properties"));
++            versionIS = JmeVersion.class.getResourceAsStream("version.properties");
++            props.load(versionIS);
++            versionIS.close();
+         } catch (IOException | NullPointerException ex) {
+             logger.log(Level.WARNING, "Unable to read version info!", ex);
+         }
+diff --git a/jme3-ios/src/main/java/com/jme3/system/ios/IGLESContext.java b/jme3-ios/src/main/java/com/jme3/system/ios/IGLESContext.java
+index 009195c77..86317058b 100644
+--- a/jme3-ios/src/main/java/com/jme3/system/ios/IGLESContext.java
++++ b/jme3-ios/src/main/java/com/jme3/system/ios/IGLESContext.java
+@@ -42,6 +42,8 @@ import com.jme3.opencl.Context;
+ import com.jme3.renderer.ios.IosGL;
+ import com.jme3.renderer.opengl.*;
+ import com.jme3.system.*;
++import com.jme3.util.IosNativeBufferAllocator;
++import com.jme3.util.BufferAllocatorFactory;
+ 
+ import java.util.concurrent.atomic.AtomicBoolean;
+ import java.util.logging.Level;
+@@ -65,6 +67,14 @@ public class IGLESContext implements JmeContext {
+     protected IosInputHandler input;
+     protected int minFrameDuration = 0;                   // No FPS cap
+ 
++    static {
++        final String implementation = BufferAllocatorFactory.PROPERTY_BUFFER_ALLOCATOR_IMPLEMENTATION;
++
++        if (System.getProperty(implementation) == null) {
++            System.setProperty(implementation, IosNativeBufferAllocator.class.getName());
++        }
++    }
++
+     public IGLESContext() {
+            logger.log(Level.FINE, "IGLESContext constructor");
+     }
+@@ -267,4 +277,4 @@ public class IGLESContext implements JmeContext {
+     public int getWindowYPosition() {
+         throw new UnsupportedOperationException("not implemented yet");
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/jme3-ios/src/main/java/com/jme3/util/IosBufferAllocator.java b/jme3-ios/src/main/java/com/jme3/util/IosBufferAllocator.java
+new file mode 100644
+index 000000000..9e387aa43
+--- /dev/null
++++ b/jme3-ios/src/main/java/com/jme3/util/IosBufferAllocator.java
+@@ -0,0 +1,118 @@
++/*
++ * Copyright (c) 2009-2024 jMonkeyEngine
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
++ * * Redistributions of source code must retain the above copyright
++ *   notice, this list of conditions and the following disclaimer.
++ *
++ * * Redistributions in binary form must reproduce the above copyright
++ *   notice, this list of conditions and the following disclaimer in the
++ *   documentation and/or other materials provided with the distribution.
++ *
++ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
++ *   may be used to endorse or promote products derived from this software
++ *   without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
++ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
++ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
++ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
++ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
++ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
++ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
++ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
++ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
++ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ */
++
++package com.jme3.util;
++
++import java.lang.reflect.Field;
++import java.nio.Buffer;
++import java.nio.ByteBuffer;
++import java.util.HashMap;
++import java.util.Map;
++
++/**
++ * @author Jesus Oliver
++ * Quick test to solve instancing issue in 3.6.1 ios. As did in Android, should change to a native way
++ * @deprecated implemented {@link IosNativeBufferAllocator} instead.
++ */
++@Deprecated
++public class IosBufferAllocator implements BufferAllocator {
++
++    // We make use of the ReflectionAllocator to remove the inner buffer
++    private static final ReflectionAllocator reflectionAllocator = new ReflectionAllocator();
++
++    private static final String[] wrapperClassNames = {
++            "java.nio.ByteBufferAsFloatBuffer",
++            "java.nio.ByteBufferAsIntBuffer",
++            "java.nio.ByteBufferAsDoubleBuffer",
++            "java.nio.ByteBufferAsShortBuffer",
++            "java.nio.ByteBufferAsLongBuffer",
++            "java.nio.ByteBufferAsCharBuffer",
++    };
++    private static final String[] possibleBufferFieldNames = {"bb", "byteBuffer"};
++
++    // Keep track of ByteBuffer field by the wrapper class
++    private static final Map<Class, Field> fieldIndex = new HashMap<>();
++
++    static {
++        for (String className : wrapperClassNames) {
++            try {
++                Class clazz = Class.forName(className);
++
++                // loop for all possible field names in android
++                for (String fieldName : possibleBufferFieldNames) {
++                    try {
++                        Field field = clazz.getDeclaredField(fieldName);
++                        field.setAccessible(true);
++                        fieldIndex.put(clazz, field);
++                        break;
++                    } catch (NoSuchFieldException e) {
++                    }
++                }
++            } catch (ClassNotFoundException ex) {
++            }
++        }
++    }
++
++    /**
++     * Searches the inner direct buffer of the wrapped buffer classes
++     * and destroys it using the reflection allocator method.
++     *
++     * @param toBeDestroyed The direct buffer that will be "cleaned".
++     *
++     */
++    @Override
++    public void destroyDirectBuffer(Buffer toBeDestroyed) {
++        // If it is a wrapped buffer, get it's inner direct buffer field and destroy it
++        Field field = fieldIndex.get(toBeDestroyed.getClass());
++        if (field != null) {
++            try {
++                ByteBuffer innerBuffer = (ByteBuffer) field.get(toBeDestroyed);
++                if (innerBuffer != null) {
++                    // Destroy it using the reflection method
++                    reflectionAllocator.destroyDirectBuffer(innerBuffer);
++                }
++            } catch (IllegalAccessException ex) {
++            }
++
++        } else {
++            // It is not a wrapped buffer, use default reflection allocator to remove it instead.
++            reflectionAllocator.destroyDirectBuffer(toBeDestroyed);
++        }
++    }
++
++    @Override
++    public ByteBuffer allocate(int size) {
++        return ByteBuffer.allocateDirect(size);
++    }
++}
++
++
+diff --git a/jme3-ios/src/main/java/com/jme3/util/IosNativeBufferAllocator.java b/jme3-ios/src/main/java/com/jme3/util/IosNativeBufferAllocator.java
+new file mode 100644
+index 000000000..4c29d4e84
+--- /dev/null
++++ b/jme3-ios/src/main/java/com/jme3/util/IosNativeBufferAllocator.java
+@@ -0,0 +1,71 @@
++/*
++ * Copyright (c) 2009-2024 jMonkeyEngine
++ * All rights reserved.
++ *
++ * Redistribution and use in source and binary forms, with or without
++ * modification, are permitted provided that the following conditions are
++ * met:
++ *
++ * * Redistributions of source code must retain the above copyright
++ *   notice, this list of conditions and the following disclaimer.
++ *
++ * * Redistributions in binary form must reproduce the above copyright
++ *   notice, this list of conditions and the following disclaimer in the
++ *   documentation and/or other materials provided with the distribution.
++ *
++ * * Neither the name of 'jMonkeyEngine' nor the names of its contributors
++ *   may be used to endorse or promote products derived from this software
++ *   without specific prior written permission.
++ *
++ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
++ * "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED
++ * TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
++ * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
++ * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
++ * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
++ * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
++ * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
++ * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
++ * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
++ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
++ */
++package com.jme3.util;
++
++import java.nio.Buffer;
++import java.nio.ByteBuffer;
++
++/**
++ * Allocates and destroys direct byte buffers using native code.
++ *
++ * @author Jesus Oliver based on pavl_g's AndroidNativeBufferAllocator.
++ */
++public final class IosNativeBufferAllocator implements BufferAllocator {
++
++    @Override
++    public void destroyDirectBuffer(Buffer toBeDestroyed) {
++        releaseDirectByteBuffer(toBeDestroyed);
++    }
++
++    @Override
++    public ByteBuffer allocate(int size) {
++        return createDirectByteBuffer(size);
++    }
++
++    /**
++     * Releases the memory of a direct buffer using a buffer object reference.
++     *
++     * @param buffer the buffer reference to release its memory.
++     * @see IosNativeBufferAllocator#destroyDirectBuffer(Buffer)
++     */
++    private native void releaseDirectByteBuffer(Buffer buffer);
++
++    /**
++     * Creates a new direct byte buffer explicitly with a specific size.
++     *
++     * @param size the byte buffer size used for allocating the buffer.
++     * @return a new direct byte buffer object.
++     * @see IosNativeBufferAllocator#allocate(int)
++     */
++    private native ByteBuffer createDirectByteBuffer(long size);
++}
++

@@ -532,7 +532,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"${MOE_OTHER_LDFLAGS}",
-					"$(LIBGDX_NATIVES)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.joliver82.jme3ios;
 				PRODUCT_NAME = JmeForIosMoe;
@@ -576,7 +575,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"${MOE_OTHER_LDFLAGS}",
-					"$(LIBGDX_NATIVES)",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.joliver82.jme3ios;
 				PRODUCT_NAME = JmeForIosMoe;

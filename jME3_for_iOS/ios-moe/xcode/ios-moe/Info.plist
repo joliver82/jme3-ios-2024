@@ -22,8 +22,6 @@
 	<true/>
 	<key>MOE.Main.Class</key>
 	<string>io.github.joliver82.jmeios.ios.DummyMain</string>
-	<key>MOE.Main.Class.NO</key>
-	<string>io.github.testgdx2.ios.IOSLauncher</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
 	<key>UILaunchStoryboardName</key>

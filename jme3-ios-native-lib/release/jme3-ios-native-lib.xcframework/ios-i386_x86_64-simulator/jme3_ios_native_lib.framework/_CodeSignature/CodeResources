@@ -6,19 +6,19 @@
 	<dict>
 		<key>Headers/com_jme3_audio_ios_IosAL.h</key>
 		<data>
-		VcokUjVMt9iXWY0884VfUq1Pxa8=
+		HSeNXUz7OY19nUjM+EWWVKRoQVk=
 		</data>
 		<key>Headers/com_jme3_audio_ios_IosALC.h</key>
 		<data>
-		G2DWbh0lJ9MEL8Mm0KG1kr0Y9IQ=
+		y5a5jy1vvvy+SJjqGfRJjKnFQi8=
 		</data>
 		<key>Headers/com_jme3_audio_ios_IosEFX.h</key>
 		<data>
-		XMVGtBf7DUUO9XUes7+iRradKbs=
+		UnaooCUsqzYKnBkPQdYBMIszF0U=
 		</data>
 		<key>Headers/com_jme3_util_IosNativeBufferAllocator.h</key>
 		<data>
-		v19PZ73T06ZHJOtGhb62CY6Qmnk=
+		J7FLz41kH/wX7V8vXMfOdk/EmPE=
 		</data>
 		<key>Headers/jme3_ios_native_lib.h</key>
 		<data>
@@ -39,44 +39,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			VcokUjVMt9iXWY0884VfUq1Pxa8=
+			HSeNXUz7OY19nUjM+EWWVKRoQVk=
 			</data>
 			<key>hash2</key>
 			<data>
-			dhOtu4iiwF3EOZKL5p0I9l4VIkBcTJS0LrCP6X4SdEI=
+			sKaNG1mYLtwUBbRkShwemCj8QoRYhnhkeR+ACsm/NXg=
 			</data>
 		</dict>
 		<key>Headers/com_jme3_audio_ios_IosALC.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			G2DWbh0lJ9MEL8Mm0KG1kr0Y9IQ=
+			y5a5jy1vvvy+SJjqGfRJjKnFQi8=
 			</data>
 			<key>hash2</key>
 			<data>
-			loTjJqTmU5p7WmMu9CdyfWEBYu9j4ZlTbf+dHvbQoKM=
+			c69xQY5TsbLBTPtFL0fRtlvaFqniEK3NqxClawOOirw=
 			</data>
 		</dict>
 		<key>Headers/com_jme3_audio_ios_IosEFX.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			XMVGtBf7DUUO9XUes7+iRradKbs=
+			UnaooCUsqzYKnBkPQdYBMIszF0U=
 			</data>
 			<key>hash2</key>
 			<data>
-			gKDMYVQCmZ5bMSyPK6UA56Aj0wMeg1S33uSsBHq4k9Q=
+			U/djNKOPwQkQbwcj7gL4+qu0JsX8tH7trbvSS2BLLVI=
 			</data>
 		</dict>
 		<key>Headers/com_jme3_util_IosNativeBufferAllocator.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			v19PZ73T06ZHJOtGhb62CY6Qmnk=
+			J7FLz41kH/wX7V8vXMfOdk/EmPE=
 			</data>
 			<key>hash2</key>
 			<data>
-			Q2Wxjmzifj5X8yyvedfNhdTMYePqyHmCLn0jb7HAqDw=
+			MTnXMu9wJg8AqeYmjtAi2jELPXwmOXX2HAKVja8vat8=
 			</data>
 		</dict>
 		<key>Headers/jme3_ios_native_lib.h</key>

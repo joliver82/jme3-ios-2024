@@ -18,6 +18,8 @@
 		581773AB1E37A2DB004E28A9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581773A41E37A2DB004E28A9 /* OpenGLES.framework */; };
 		581773AC1E37A2DB004E28A9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581773A51E37A2DB004E28A9 /* QuartzCore.framework */; };
 		581773AE1E37A7EF004E28A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581773AD1E37A7EF004E28A9 /* UIKit.framework */; };
+		BB2763E72CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2763E62CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework */; };
+		BB2763E82CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB2763E62CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		BBAA18842C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBAA18832C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework */; };
 		BBAA18852C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BBAA18832C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -30,6 +32,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				BBAA18852C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework in Embed Frameworks */,
+				BB2763E82CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -53,6 +56,7 @@
 		58C6F5381DA66CB600309CB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8084D1F0A307440EC73CBFCA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AE849253332D33EDDC76AB2C /* moe-main-interfaces.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "moe-main-interfaces.m"; path = "../build/moe/main/ui-headers/moe-main-interfaces.m"; sourceTree = "<group>"; };
+		BB2763E62CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "libbulletjme-ios-native-lib.xcframework"; path = "../../../libbulletjme-ios-native-lib/release/libbulletjme-ios-native-lib.xcframework"; sourceTree = "<group>"; };
 		BBAA18832C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "jme3-ios-native-lib.xcframework"; path = "../../../jme3-ios-native-lib/release/jme3-ios-native-lib.xcframework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,6 +75,7 @@
 				BBAA18842C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework in Frameworks */,
 				581773A61E37A2DB004E28A9 /* AudioToolbox.framework in Frameworks */,
 				581773A71E37A2DB004E28A9 /* AVFoundation.framework in Frameworks */,
+				BB2763E72CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework in Frameworks */,
 				581773A81E37A2DB004E28A9 /* CoreGraphics.framework in Frameworks */,
 				581773A91E37A2DB004E28A9 /* CoreMotion.framework in Frameworks */,
 				581773AA1E37A2DB004E28A9 /* OpenAL.framework in Frameworks */,
@@ -94,6 +99,7 @@
 		5817739E1E37A2DA004E28A9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BB2763E62CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework */,
 				BBAA18832C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework */,
 				581773AD1E37A7EF004E28A9 /* UIKit.framework */,
 				5817739F1E37A2DB004E28A9 /* AudioToolbox.framework */,

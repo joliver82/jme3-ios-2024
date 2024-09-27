@@ -33,6 +33,8 @@ dependencies {
     implementation "org.jmonkeyengine:jme3-lwjgl3:" + jmonkeyengineVersion
     implementation "org.jmonkeyengine:jme3-desktop:" + jmonkeyengineVersion
 
+    implementation("com.github.stephengold:Minie:8.2.0")
+
     // Assets sub-project
     runtimeOnly project(':assets')
 }

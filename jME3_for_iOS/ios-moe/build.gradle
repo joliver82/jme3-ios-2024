@@ -56,7 +56,9 @@ dependencies {
   implementation 'org.jmonkeyengine:jme3-niftygui:' + jmonkeyengineVersion
   runtimeOnly 'org.jmonkeyengine:jme3-testdata:' + jmonkeyengineVersion
   //implementation "org.jmonkeyengine:jme3-ios:" + jmonkeyengineVersion
-  implementation fileTree(include: ['jme3-ios*.jar'], dir: '../libs') // Includes custom jme3.6.1
+  implementation fileTree(include: ['jme3-ios*.jar'], dir: '../libs') // Includes custom jme3-ios_3.6.1
+
+  implementation("com.github.stephengold:Minie:8.2.0")
 
   // Assets sub-project
   runtimeOnly project(':assets')

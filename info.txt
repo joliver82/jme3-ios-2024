@@ -11,7 +11,12 @@ jme3-ios-lib
 
 jme3-ios-native-lib
 - iOS native code taken from jmonkeyengine sdk repo (v3.3 branch)
-- Created a xcode framework peoject and added all native code for it
+- Created a xcode framework project and added all native code for it
+- Compile using the included script export.sh
+
+libbulletjme-ios-native-lib
+- iOS native code taken from sgold's Libbulletjme repo (current master branch, equivalent to 21.3.1 tag)
+- Created a xcode framework project and added all native code for it
 - Compile using the included script export.sh
 
 jme3.6.1.patch

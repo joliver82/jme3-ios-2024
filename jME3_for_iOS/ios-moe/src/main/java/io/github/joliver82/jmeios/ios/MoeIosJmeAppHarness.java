@@ -190,7 +190,7 @@ public class MoeIosJmeAppHarness extends GLKViewController implements GLKViewDel
         // Initialization from previous JmeAppHarness+IosHarness
         JmeSystem.setSystemDelegate(new JmeIosSystem());
         // TODO: set desired test to run
-        int testIdx=1;
+        int testIdx=6;
         switch(testIdx)
         {
             case 1:
@@ -207,6 +207,9 @@ public class MoeIosJmeAppHarness extends GLKViewController implements GLKViewDel
                 break;
             case 5:
                 app = new io.github.joliver82.jmeios.game.WaterTest(); //OK
+                break;
+            case 6:
+                app = new io.github.joliver82.jmeios.game.PhysicsTest();
                 break;
             case 0:
             default:

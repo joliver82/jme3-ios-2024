@@ -40,18 +40,17 @@ public class DummyMain extends NSObject implements UIApplicationDelegate
 
     @Override
     public boolean applicationDidFinishLaunchingWithOptions(UIApplication application, NSDictionary launchOptions) {
-        UIViewController vc = MoeIosJmeAppHarness.alloc().init();
-        UINavigationController navigationController = UINavigationController.alloc().init();
-
-        UIColor moeBlue = UIColor.alloc().initWithRedGreenBlueAlpha(0.0, 113/255.f, 197/255.f, 1.0);
-
-        navigationController.initWithRootViewController(vc);
-
         UIScreen screen = UIScreen.mainScreen();
-
         CGRect bounds = screen.bounds();
         window = UIWindow.alloc().initWithFrame(bounds);
 
+        UIViewController vc = MoeIosJmeAppHarness.alloc().init();
+
+        // Initialization with navigation bar
+        /*
+        UINavigationController navigationController = UINavigationController.alloc().init();
+        UIColor moeBlue = UIColor.alloc().initWithRedGreenBlueAlpha(0.0, 113/255.f, 197/255.f, 1.0);
+        navigationController.initWithRootViewController(vc);
         window.setRootViewController(navigationController);
 
         navigationController.navigationBar().setBarStyle(UIBarStyle.Black);
@@ -59,6 +58,10 @@ public class DummyMain extends NSObject implements UIApplicationDelegate
         navigationController.navigationBar().setShadowImage(UIImage.alloc().init());
         navigationController.navigationBar().setTranslucent(false);
         navigationController.navigationBar().setTintColor(UIColor.whiteColor());
+         */
+
+        // New initialization, only glwindow
+        window.setRootViewController(vc);
 
         window.makeKeyAndVisible();
 

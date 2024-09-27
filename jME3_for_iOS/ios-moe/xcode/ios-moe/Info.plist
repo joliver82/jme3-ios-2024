@@ -22,8 +22,12 @@
 	<true/>
 	<key>MOE.Main.Class</key>
 	<string>io.github.joliver82.jmeios.ios.DummyMain</string>
+	<key>MOE.Main.Class.NO</key>
+	<string>io.github.testgdx2.ios.IOSLauncher</string>
 	<key>UIApplicationExitsOnSuspend</key>
 	<false/>
+	<key>UILaunchStoryboardName</key>
+	<string>EmptyStoryboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>opengles-2</string>
@@ -36,8 +40,6 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>MOE.Main.Class.NO</key>
-	<string>io.github.testgdx2.ios.IOSLauncher</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>

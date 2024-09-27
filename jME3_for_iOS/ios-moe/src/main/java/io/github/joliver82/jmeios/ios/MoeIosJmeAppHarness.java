@@ -75,10 +75,6 @@ public class MoeIosJmeAppHarness extends GLKViewController implements GLKViewDel
         return self;
     }
 
-/*
-    @Override
-    public native MoeIosJmeAppHarness init();
-*/
     public MoeIosJmeAppHarness(Pointer peer)
     {
         super(peer);
@@ -165,7 +161,7 @@ public class MoeIosJmeAppHarness extends GLKViewController implements GLKViewDel
     public void viewDidLoad() {
         super.viewDidLoad();
 
-        setTitle("Jme3 for iOS using MOE");
+        //setTitle("Jme3 for iOS using MOE");
 
         setEdgesForExtendedLayout(UIRectEdge.None);
 
@@ -190,7 +186,7 @@ public class MoeIosJmeAppHarness extends GLKViewController implements GLKViewDel
         // Initialization from previous JmeAppHarness+IosHarness
         JmeSystem.setSystemDelegate(new JmeIosSystem());
         // TODO: set desired test to run
-        int testIdx=6;
+        int testIdx=0;
         switch(testIdx)
         {
             case 1:

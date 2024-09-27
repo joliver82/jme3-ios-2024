@@ -20,6 +20,7 @@
 		581773AE1E37A7EF004E28A9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 581773AD1E37A7EF004E28A9 /* UIKit.framework */; };
 		BB2763E72CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB2763E62CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework */; };
 		BB2763E82CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BB2763E62CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		BB2763EA2CA6D20E00B73E12 /* EmptyStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB2763E92CA6D20E00B73E12 /* EmptyStoryboard.storyboard */; };
 		BBAA18842C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBAA18832C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework */; };
 		BBAA18852C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BBAA18832C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 		8084D1F0A307440EC73CBFCA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		AE849253332D33EDDC76AB2C /* moe-main-interfaces.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "moe-main-interfaces.m"; path = "../build/moe/main/ui-headers/moe-main-interfaces.m"; sourceTree = "<group>"; };
 		BB2763E62CA623F900B73E12 /* libbulletjme-ios-native-lib.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "libbulletjme-ios-native-lib.xcframework"; path = "../../../libbulletjme-ios-native-lib/release/libbulletjme-ios-native-lib.xcframework"; sourceTree = "<group>"; };
+		BB2763E92CA6D20E00B73E12 /* EmptyStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EmptyStoryboard.storyboard; sourceTree = "<group>"; };
 		BBAA18832C9CE16C0015DF5E /* jme3-ios-native-lib.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = "jme3-ios-native-lib.xcframework"; path = "../../../jme3-ios-native-lib/release/jme3-ios-native-lib.xcframework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -156,6 +158,7 @@
 				58C6F5381DA66CB600309CB6 /* Info.plist */,
 				5817739D1E37A10D004E28A9 /* custom.xcconfig */,
 				58C6F5271DA66CB600309CB6 /* Supporting Files */,
+				BB2763E92CA6D20E00B73E12 /* EmptyStoryboard.storyboard */,
 			);
 			path = "ios-moe";
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB2763EA2CA6D20E00B73E12 /* EmptyStoryboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

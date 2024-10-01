@@ -55,8 +55,10 @@ project(":assets") {
 
     java {
         toolchain {
-            languageVersion = JavaLanguageVersion.of(17)
+            languageVersion = JavaLanguageVersion.of(11)
         }
+        sourceCompatibility = '11'
+        targetCompatibility = '11'
     }
 }
 
@@ -73,4 +75,3 @@ task buildAllDistributions {
         println(" #### Check the individual modules build/distributions folders for distributable zips etc #### ")
     }
 }
-

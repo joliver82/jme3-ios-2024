@@ -1,0 +1,44 @@
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath "com.mobidevelop.robovm:robovm-gradle-plugin:$robovmVersion"
+  }
+}
+apply plugin: 'robovm'
+
+apply plugin: 'java-library'
+apply plugin: 'java'
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+ext {
+  mainClassName = "io.github.joliver82.jmeios.ios.DummyMain"
+  //mainClassName = "io.github.joliver82.jmeios.ios.EmptyMain"
+  //mainClassName = "io.github.testgdx3.ios.IOSLauncher"
+}
+
+launchIPhoneSimulator.dependsOn build
+launchIPadSimulator.dependsOn build
+launchIOSDevice.dependsOn build
+createIPA.dependsOn build
+
+apply from: file("../common.gradle")
+
+dependencies {
+  implementation "com.mobidevelop.robovm:robovm-cocoatouch:$robovmVersion"
+  implementation "com.mobidevelop.robovm:robovm-rt:$robovmVersion"
+
+  implementation project(':game')
+
+  //implementation "org.jmonkeyengine:jme3-ios:" + jmonkeyengineVersion
+  implementation fileTree(include: ['jme3-ios*.jar'], dir: '../libs') // Includes custom jme3-ios_3.6.1
+
+  // Assets sub-project
+  runtimeOnly project(':assets')
+}
+

@@ -19,3 +19,6 @@ include ':desktop'
 include ':app'
 include ':game'
 include ':ios-moe'
+include ':ios-rvm'
+// include ':ios' // ios robovm gdx as it is
+

@@ -1,10 +1,20 @@
 jME3_for_iOS
-- Game project including Desktop, Android and iOS
+- Game project including Desktop, Android and iOS (two variants MOE and RoboVM)
+ios-moe
+- Requires Android Studio Multi-OS-Engine plugin -> https://plugins.jetbrains.com/plugin/8559-multi-os-engine
 - Set Main class in ios-moe/xcode/ios-moe/Info.plist (param MOE.Main.Class)
 - Modify ios-moe/xcode/ios-moe/main.cpp to set proper memory required by your project
-- to run it ./gradlew ios-moe:moeLaunch -Pmoe.launcher.simulators=<your simulator UUID here> 
+- Add AppIcon in XCode project
+- To run it ./gradlew ios-moe:moeLaunch -Pmoe.launcher.simulators=<your simulator UUID here> 
 - Simulator UUID can be obtained from ./gradlew ios-moe:moeListSimulators
 - Can al set runtime options in AndroidStudio -> http://multi-os-engine.org/doc/multi-os-engine/3_getting_started/1_hello_world_app/hello_world_app.html#running-and-debugging-your-multi-os-engine-app
+ios-rvm (NOT WORKING STILL)
+- Requires Android Studio RoboVM OSS IntelliJ plugin AKA MobiVM -> https://plugins.jetbrains.com/plugin/14440-mobivm
+- This build doesn't run still, java.util.function.Consumer doesn't exist in robovm which is required by jme3. Waiting for roboVM PR https://github.com/MobiVM/robovm/pull/527 to be merged
+- Set Main class in ios-rvm build.gradle ext.mainClassName
+- Set AppIcons in ios-rvm//data/Media.xcassets/AppIcon.appiconset/ folder, currently kept libgdx icons as sample
+- To run it -/gradlew ios-rvm:launchIphoneSimulator
+- To select specific Simulator, follow the libgdx running manual https://libgdx.com/wiki/start/import-and-running at section iOS. To sum it up, Create a RoboVM iOS configuration and set the simulator you want
 
 jme3-ios-lib
 - Java lib, taken from jmonkeyengine repo (v3.6 branch) and patched --> not really needed as jme3-ios source has not been removed from jme3 repo and could apply the patch directly there
@@ -12,11 +22,13 @@ jme3-ios-lib
 jme3-ios-native-lib
 - iOS native code taken from jmonkeyengine sdk repo (v3.3 branch)
 - Created a xcode framework project and added all native code for it
+- Open with xcode and change "Header Search Path" according to your xcode or jdk location
 - Compile using the included script export.sh
 
 libbulletjme-ios-native-lib
 - iOS native code taken from sgold's Libbulletjme repo (current master branch, equivalent to 21.3.1 tag)
 - Created a xcode framework project and added all native code for it
+- Open with xcode and change "Header Search Path" according to your xcode or jdk location
 - Compile using the included script export.sh
 
 jme3.6.1.patch

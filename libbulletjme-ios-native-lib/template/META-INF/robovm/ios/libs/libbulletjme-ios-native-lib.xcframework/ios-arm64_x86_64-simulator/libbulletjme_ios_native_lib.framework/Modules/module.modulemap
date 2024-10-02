@@ -1,0 +1,6 @@
+framework module libbulletjme_ios_native_lib {
+  umbrella header "libbulletjme_ios_native_lib.h"
+
+  export *
+  module * { export * }
+}

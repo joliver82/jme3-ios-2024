@@ -1,0 +1,9 @@
+<config>
+    <frameworkPaths>
+        <path>libs</path>
+    </frameworkPaths>
+    <frameworks>
+        <framework>libbulletjme-ios-native-lib</framework>
+    </frameworks>
+</config>
+

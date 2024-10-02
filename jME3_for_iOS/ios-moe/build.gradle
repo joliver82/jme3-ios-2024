@@ -19,6 +19,7 @@ task copyNatives  {
     file("xcode/native/ios/").mkdirs();
     def subDir = "META-INF/robovm/ios/libs/"
     configurations.natives.files.each { jar ->
+      printf("Native: %s\n", jar.name)
       copy {
         from zipTree(jar)
         include "$subDir/*.xcframework/**"
@@ -47,6 +48,8 @@ dependencies {
 
   //implementation "org.jmonkeyengine:jme3-ios:" + jmonkeyengineVersion
   implementation fileTree(include: ['jme3-ios*.jar'], dir: '../libs') // Includes custom jme3-ios_3.6.1
+
+  natives fileTree(include: ['*.jar'], dir: '../native-ios-libs') // Includes ios natives
 
   // Assets sub-project
   runtimeOnly project(':assets')
